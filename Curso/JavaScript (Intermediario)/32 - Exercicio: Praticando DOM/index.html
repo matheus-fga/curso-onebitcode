@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio: Praticando DOM</title>
+    <style>
+      span.white-text{
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cadastro de Imoveis</h1>
+    <form onsubmit="addProperty()">
+      <p>
+        <label for="type">Tipo do Imovel: </label>
+        <select id="type" name="type">
+            <option value="yellow">Casa</option>
+            <option value="blue">Apartamento</option>
+        </select>
+      </p>
+      <p>
+        <label for="area">Area (m2): </label>
+        <input type="text" id="area" name="area">
+      </p>
+      <p>
+        <label>Está alugado?</label>
+        <input type="radio" value="sim" name="is-rented">Sim
+        <input type="radio" value="não" name="is-rented">Não
+      </p>
+      <p>
+        <button type="submit">Cadastrar</button>
+      </p>
+    </form>
+    <ol id="properties"></ol>
+    <script src="property.js"></script>
+    <script src="app.js"></script>
+    <script src="events.js"></script>
+  </body>
+</html>

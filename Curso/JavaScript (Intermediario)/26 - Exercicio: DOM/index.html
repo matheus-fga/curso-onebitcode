@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio: DOM</title>
+  </head>
+  <body>
+    <button onclick="addNewAddress()">Adicionar</button>
+    <br>
+    <form id="address">
+      <p>
+        <label for="number">Numero da Casa: </label>
+        <input type="text" id="number" name="number">
+      </p>
+      <p>
+        <label for="district">Bairro: </label>
+        <input type="text" id="district" name="district">
+      </p>
+      <p>
+        <label for="city">Cidade: </label>
+        <input type="text" id="city" name="city">
+      </p>
+    </form>
+    <br><br>
+    <ol id="addresses"></ol>
+    <script src="js/events.js"></script>
+  </body>
+</html>

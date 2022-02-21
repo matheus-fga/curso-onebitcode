@@ -1,0 +1,12 @@
+.section{
+  padding: 4rem 1rem 0rem;
+}
+
+.table td{
+  padding: 20px;
+  text-align: justify;
+}
+
+div.container{
+  padding-bottom: 20px;
+}

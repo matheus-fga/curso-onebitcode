@@ -1,0 +1,26 @@
+h4{
+  color: yellow;
+  background-color: green;
+  border-color: white;
+  border-width: 5px;
+  border-style: solid;
+}
+
+body{
+  background-image: url('jupiter.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 8px solid white
+}
+
+.aqua-text{
+  color: aqua;
+}
+
+.big-text{
+  font-size: 30px;
+}
+
+#europa-text{
+  font-style: italic;
+}
