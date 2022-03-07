@@ -1,27 +1,25 @@
 import React, { Fragment } from 'react';
 import Planet from './planet'
 
+async function getPlanets() {
+  const response = await fetch('http://localhost:3000/api/planets.json')
+  const data = await response.json()
+  return data
+}
 class Planets extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      planets: [
-        {
-          id: 1,
-          name: "Mercúrio",
-          description: "Mercúrio é o menor e mais interno planeta do Sistema Solar, orbitando o Sol a cada 87,969 dias terrestres.",
-          img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Mercury_in_color_-_Prockter07-edit1.jpg/280px-Mercury_in_color_-_Prockter07-edit1.jpg",
-          href: "https://pt.wikipedia.org/wiki/Merc%C3%BArio_(planeta)"
-        },
-        {
-          id: 2,
-          name: "Plutão",
-          description: "Plutão, formalmente designado 134340 Plutão (símbolos: ⯓ e ♇) é um planeta anão do Sistema Solar e o nono maior e décimo mais massivo objeto observado diretamente orbitando o Sol.",
-          img_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Pluto_in_True_Color_-_High-Res.jpg/280px-Pluto_in_True_Color_-_High-Res.jpg",
-          href: "https://pt.wikipedia.org/wiki/Plut%C3%A3o"
-        }
-      ]
+      planets: []
     }
+  }
+
+  componentDidMount() {
+    getPlanets().then(data => {
+      this.setState(state => ({
+        planets: data['planets']
+      }))
+    })
   }
 
   get planetsListLenght() {
