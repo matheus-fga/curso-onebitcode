@@ -1,11 +1,24 @@
 import React, { Fragment, useState } from 'react';
 
 const Form = (props) => {
-  const [name, setName] = useState('')
-  const handleChange = (e) => setName(e.currentTarget.value);
+
+  const initialFields = {
+    name:'',
+    description:'',
+    img_url:'',
+    href:'',
+  }
+
+  const [fields, setFields] = useState(initialFields)
+  const handleChange = (e) => setFields({
+    ...fields,
+    [e.currentTarget.name]: e.currentTarget.value
+  });
+  
   const handleSubmit = (e) => {
-    props.addNewPlanet({name: name});
-    e.preventDefault()
+    props.addNewPlanet(fields);
+    e.preventDefault();
+    setFields(initialFields);
   }
 
   return(
@@ -13,7 +26,19 @@ const Form = (props) => {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="name">Nome:</label>
-        <input id='name' type="text" value={name} onChange={handleChange}/>
+        <input id='name' name='name' type="text" value={fields.name} onChange={handleChange}/>
+      </div>
+      <div>
+        <label htmlFor="description">Descrição:</label>
+        <textarea id='description' name='description' value={fields.description} onChange={handleChange}/>
+      </div>
+      <div>
+        <label htmlFor="img_url">URL Imagem:</label>
+        <input id='img_url' name='img_url' type="text" value={fields.img_url} onChange={handleChange}/>
+      </div>
+      <div>
+        <label htmlFor="href">Link:</label>
+        <input id='href' name='href' type="text" value={fields.href} onChange={handleChange}/>
       </div>
       <br />
       <input type="submit"/>
