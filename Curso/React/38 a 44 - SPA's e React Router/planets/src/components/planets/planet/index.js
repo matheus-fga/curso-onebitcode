@@ -1,12 +1,14 @@
 import React from 'react';
 import GreyImg from '../../shared/grey_img';
-import DescriptionWithLink from '../../shared/description_with_link';
+import { Link } from 'react-router-dom';
 
 const Planet = (props) => {
 
   return(
     <div>
-      <DescriptionWithLink name={props.name} description={props.description} href={props.href}/>
+      <p>
+        <Link to={`/planet/${props.id}`}><h4>{props.name}</h4></Link>
+      </p>
       <GreyImg img_url={props.img_url}/>
     </div>
   )
