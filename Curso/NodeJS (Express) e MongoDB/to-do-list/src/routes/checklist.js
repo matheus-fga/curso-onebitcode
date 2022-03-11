@@ -14,7 +14,17 @@ router.post('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   console.log(req.params.id);
-  res.send(`ID: ${req.params.id}`);
+  res.send(`GET ID: ${req.params.id}`);
+})
+
+router.put('/:id', (req, res) => {
+  console.log(req.params.id);
+  res.send(`PUT ID: ${req.params.id}`);
+})
+
+router.delete('/:id', (req, res) => {
+  console.log(req.params.id);
+  res.send(`DELETE ID: ${req.params.id}`);
 })
 
 module.exports = router;
