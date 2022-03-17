@@ -22,8 +22,8 @@
                 <%= checklist.name %>
               </p>
               <p class="subtitle is-size-6">
-                <% if(checklist.tasks > 0) { %>
-                  <%= checklist.tasks.count %> Tarefas
+                <% if(checklist.tasks.length > 0) { %>
+                  <%= checklist.tasks.length %> Tarefas
                 <% } else { %>
                   Sem Tarefas
                 <% } %>
