@@ -3,7 +3,7 @@
     <label class="label">Nome</label>
     <div class="control">
       <input class="input" type="text" name="checklist[name]" placeholder="Lista de Tarefas"
-        value="<% checklist.name %>">
+        value="<%= checklist.name %>">
         <% if(checklist.error && checklist.error.hasOwnProperty('message')) { %>
           <p class="is-danger help"><%= checklist.error.message %></p>
         <% } %>
