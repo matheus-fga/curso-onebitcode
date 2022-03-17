@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     let checklists = await Checklist.find({});
-    res.status(200).render('checklists/index', {checklists: checklists});
+    res.render('checklists/index', {checklists: checklists});
   } catch (error) {
     res.status(500).render('pages/error', {error: error});
   }
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 router.get('/new', async (req, res) => {
   try {
     let checklist = new Checklist();
-    res.status(200).render('checklists/new', { checklist: checklist});
+    res.render('checklists/new', { checklist: checklist});
   } catch (error) {
     res.status(500).render('pages/error', {error: error});
   }
@@ -24,7 +24,7 @@ router.get('/new', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   try {
     let checklist = await Checklist.findById(req.params.id);
-    res.status(200).render('checklists/edit', { checklist: checklist});
+    res.render('checklists/edit', { checklist: checklist});
   } catch (error) {
     res.status(500).render('pages/error', {error: error});
   }
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 
   try {
     await checklist.save();
-    res.status(200).redirect('/checklists');
+    res.redirect('/checklists');
   } catch (error) {
     console.log(error);
     res.status(422).render('checklists/new', {checklist: {...checklist, error}});
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     let checklist = await Checklist.findById(req.params.id);
-    res.status(200).render('checklists/show', {checklist: checklist});
+    res.render('checklists/show', {checklist: checklist});
   } catch (error) {
     res.status(500).render('pages/error', {error: error});
   }
@@ -58,19 +58,21 @@ router.put('/:id', async (req, res) => {
   
   try {
     await checklist.updateOne({name});
-    res.status(200).redirect('/checklists');
+    res.redirect('/checklists');
   } catch (error) {
-    let errors = error.errors
-    res.status(422).render('checklists/edit', {checklist: {...checklist, errors}})
+    res.status(422).render('checklists/edit', {checklist: {...checklist, error}})
   }
 })
 
 router.delete('/:id', async (req, res) => {
+  let checklist = await Checklist.findById(req.params.id);
+ 
   try {
-    let checklist = await Checklist.findByIdAndDelete(req.params.id);
-    res.status(200).json(checklist);
+    let name = checklist.name;
+    await checklist.deleteOne({name});
+    res.redirect('/checklists');
   } catch (error) {
-    res.status(422).json(error);
+    res.status(422).render('checklists/edit', {checklist: {...checklist, error}})
   }
 })
 
