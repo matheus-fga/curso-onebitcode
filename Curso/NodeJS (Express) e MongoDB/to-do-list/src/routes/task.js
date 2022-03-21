@@ -3,6 +3,7 @@ const Checklist = require('../models/checklist');
 const Task = require('../models/task');
 
 const checklistDependentRoute = express.Router();
+const simpleRouter = express.Router();
 
 checklistDependentRoute.delete('/:id/tasks/:id_tasks', async (req, res) => {
   try {
@@ -41,4 +42,18 @@ checklistDependentRoute.post('/:id/tasks', async (req, res) => {
   }
 })
 
-module.exports = { checklistDependent: checklistDependentRoute };
+simpleRouter.put('/:id', async (req, res) => {
+  let task = await Task.findById(req.params.id);
+  try {
+    task.set(req.body.task);
+    await task.save();
+    res.status(200).json({ task });
+  } catch (error) {
+    res.status(422).json( {task: {...task, error}});
+  }
+})
+
+module.exports = { 
+  checklistDependent: checklistDependentRoute,
+  simple: simpleRouter
+};
